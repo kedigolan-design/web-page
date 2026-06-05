@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Calculator — KEDI BALOKA</title>
+  <link rel="stylesheet" href="mini-calculator.css" />
+</head>
+<body>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="orb one" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
+  <div class="orb three" aria-hidden="true"></div>
+
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="index.html">
+      <span class="dot"></span>
+      <span>KEDI BALOKA</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#projects">← Back to Projects</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section class="card app" aria-label="Mini calculator">
+      <div class="header">
+        <div>
+          <h1>Mini Calculator</h1>
+          <p>Works offline • Supports keyboard • Clean + fast</p>
+        </div>
+        <div class="status" id="status" aria-live="polite">Ready</div>
+      </div>
+
+      <div class="display" role="group" aria-label="Calculator display">
+        <div class="expression" id="expression" aria-hidden="true">&nbsp;</div>
+        <div class="result" id="result">0</div>
+      </div>
+
+      <div class="keys" role="application" aria-label="Calculator keys">
+        <button class="key key-fn" data-action="clear" type="button">C</button>
+        <button class="key key-fn" data-action="delete" type="button">⌫</button>
+        <button class="key key-op" data-action="op" data-value="/" type="button">÷</button>
+        <button class="key key-op" data-action="op" data-value="*" type="button">×</button>
+
+        <button class="key key-num" data-action="digit" data-value="7" type="button">7</button>
+        <button class="key key-num" data-action="digit" data-value="8" type="button">8</button>
+        <button class="key key-num" data-action="digit" data-value="9" type="button">9</button>
+        <button class="key key-op" data-action="op" data-value="-" type="button">−</button>
+
+        <button class="key key-num" data-action="digit" data-value="4" type="button">4</button>
+        <button class="key key-num" data-action="digit" data-value="5" type="button">5</button>
+        <button class="key key-num" data-action="digit" data-value="6" type="button">6</button>
+        <button class="key key-op" data-action="op" data-value="+" type="button">+</button>
+
+        <button class="key key-num" data-action="digit" data-value="1" type="button">1</button>
+        <button class="key key-num" data-action="digit" data-value="2" type="button">2</button>
+        <button class="key key-num" data-action="digit" data-value="3" type="button">3</button>
+        <button class="key key-eq" data-action="equals" type="button">=</button>
+
+        <button class="key key-num key-wide" data-action="digit" data-value="0" type="button">0</button>
+        <button class="key key-num" data-action="dot" type="button">.</button>
+      </div>
+
+      <div class="hint">
+        <div>Keyboard: <kbd>0-9</kbd> <kbd>+</kbd> <kbd>-</kbd> <kbd>*</kbd> <kbd>/</kbd> <kbd>Enter</kbd> <kbd>=</kbd> <kbd>Backspace</kbd> <kbd>Escape</kbd></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="mini-calculator.js"></script>
+</body>
+</html>
+

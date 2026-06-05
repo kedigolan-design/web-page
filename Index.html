@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KEDI BALOKA PHILLIPPA GOLAN CHARLOTTE —  Portfolio</title>
+  <style>
+
+    
+    :root{
+      --bg0:#0b0616;
+      --bg1:#120820;
+      --text:#ff4dff;
+      --muted:rgba(255,77,255,.72);
+      --card:rgba(18, 18, 38, .68);
+      --border:rgba(167,139,250,.26);
+      --accent:#a78bfa;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --ring: 0 0 0 1px rgba(167,139,250,.26), 0 0 0 6px rgba(167,139,250,.10);
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif}
+    html{scroll-behavior:smooth}
+
+    body{
+      color:var(--text);
+      line-height:1.6;
+      overflow-x:hidden;
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(167,139,250,.28), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(255,77,255,.18), transparent 50%),
+        linear-gradient(180deg,var(--bg0),var(--bg1));
+    }
+
+    /* grid */
+    .bg-grid{
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(to right, rgba(167,139,250,.18) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(167,139,250,.12) 1px, transparent 1px);
+      background-size: 80px 80px;
+      opacity:.28;
+      mask-image: radial-gradient(700px 340px at 50% 0%, black 35%, transparent 75%);
+      -webkit-mask-image: radial-gradient(700px 340px at 50% 0%, black 35%, transparent 75%);
+      animation:gridMove 10s linear infinite;
+      z-index:-2;
+    }
+    @keyframes gridMove{from{transform:translateY(0)}to{transform:translateY(60px)}}
+
+    /* orbs */
+    .orb{position:fixed; border-radius:999px; filter: blur(18px); opacity:.65; pointer-events:none; transform:translateZ(0); z-index:-3}
+    .orb.one{width:280px;height:280px; left:-70px; top:120px; background:rgba(167,139,250,.45); animation:orb1 9s ease-in-out infinite}
+    .orb.two{width:320px;height:320px; right:-120px; top:40px; background:rgba(255,77,255,.28); animation:orb2 12s ease-in-out infinite}
+    .orb.three{width:240px;height:240px; left:30%; bottom:-100px; background:rgba(167,139,250,.20); animation:orb3 10s ease-in-out infinite}
+    @keyframes orb1{0%,100%{transform:translate(0,0)}50%{transform:translate(70px,-25px)}}
+    @keyframes orb2{0%,100%{transform:translate(0,0)}50%{transform:translate(-60px,25px)}}
+    @keyframes orb3{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-35px)}}
+
+    /* nav */
+    .nav{
+      position:fixed;
+      top:16px;
+      left:50%;
+      transform:translateX(-50%);
+      width:min(var(--max), calc(100% - 28px));
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:12px 16px;
+      border-radius:999px;
+      background: rgba(18,18,38,.62);
+      border:1px solid rgba(167,139,250,.22);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index:50;
+    }
+    .brand{display:flex; gap:10px; align-items:center; font-weight:900; letter-spacing:.2px}
+    .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2); box-shadow:0 0 18px rgba(255,77,255,.35)}
+
+    .nav a{
+      color:rgba(255,77,255,.88);
+      text-decoration:none;
+      font-weight:800;
+      font-size:.95rem;
+      padding:8px 10px;
+      border-radius:999px;
+      transition:.2s ease;
+    }
+    .nav a:hover{color:white; background:rgba(167,139,250,.16); box-shadow:0 0 0 1px rgba(167,139,250,.22) inset}
+
+    .nav-links{display:flex; gap:12px; flex-wrap:wrap}
+
+    .wrap{width:min(var(--max), 100%); margin:0 auto}
+
+    section{padding:88px 20px; position:relative}
+
+    /* hero */
+    header{min-height:100vh; display:grid; place-items:center; padding:110px 20px 70px;}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:30px; align-items:center; width:min(var(--max), 100%)}
+    @media (max-width: 900px){.hero{grid-template-columns:1fr; text-align:center} .nav{justify-content:center} .nav-links{justify-content:center}}
+
+    .kicker{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(18,18,38,.55);
+      border:1px solid rgba(167,139,250,.22);
+      color:rgba(255,77,255,.95);
+      font-weight:900;
+      letter-spacing:.2px;
+      width:fit-content;
+      margin-bottom:14px;
+      transform: translateY(18px);
+      opacity:0;
+      animation: popIn .7s ease forwards;
+    }
+    @keyframes popIn{to{transform:translateY(0);opacity:1}}
+
+    .title{
+      font-size:clamp(2.2rem, 4vw, 3.5rem);
+      line-height:1.08;
+      margin-bottom:14px;
+      letter-spacing:-.02em;
+      transform: translateY(18px);
+      opacity:0;
+      animation: popIn .8s ease forwards;
+      animation-delay: 70ms;
+    }
+
+    .title .glow{
+      background: linear-gradient(135deg, #667eea, #764ba2, #ff4dff);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      text-shadow:0 0 32px rgba(255,77,255,.22);
+    }
+
+    .subtitle{color:rgba(255,77,255,.72); font-size:1.05rem; margin-bottom:22px; transform: translateY(18px); opacity:0; animation: popIn .9s ease forwards; animation-delay: 140ms;}
+
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-start}
+    @media (max-width:900px){.cta-row{justify-content:center}}
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:900;
+      cursor:pointer;
+      text-decoration:none;
+      border:1px solid rgba(167,139,250,.26);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+      -webkit-user-select:none;
+    }
+    .btn-primary{background:linear-gradient(135deg, rgba(102,126,234,.95), rgba(255,77,255,.55)); color:#0a0a12; box-shadow:0 18px 50px rgba(255,77,255,.16)}
+    .btn-secondary{background:rgba(18,18,38,.55); color:rgba(255,77,255,.95)}
+    .btn:hover{transform: translateY(-2px); box-shadow:var(--ring)}
+
+    .hero-card{
+      position:relative;
+      border-radius: var(--radius);
+      padding:16px;
+      background:linear-gradient(180deg, rgba(22,22,52,.60), rgba(18,18,38,.40));
+      border:1px solid rgba(167,139,250,.22);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transform: translateY(18px);
+      opacity:0;
+      animation: popIn 1s ease forwards;
+      animation-delay: 220ms;
+    }
+    .hero-card:before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:radial-gradient(600px 220px at 20% 0%, rgba(255,77,255,.35), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .hero-media{position:relative; aspect-ratio:1/1; border-radius: calc(var(--radius) - 6px); overflow:hidden; background:rgba(0,0,0,.18); border:1px solid rgba(255,255,255,.06)}
+    .hero-media img{width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.08); transform:scale(1.03); transition:transform .35s ease}
+    .hero-media:hover img{transform:scale(1.08)}
+
+    .img-glow{position:absolute; inset:auto 10px 10px auto; width:110px; height:110px; border-radius:28px; background:rgba(255,77,255,.18); box-shadow:0 0 70px rgba(255,77,255,.22); display:grid; place-items:center; border:1px solid rgba(255,77,255,.20); backdrop-filter: blur(10px); opacity:.95}
+    .img-glow img{width:70px;height:70px; object-fit:contain; filter: drop-shadow(0 12px 25px rgba(255,77,255,.18))}
+
+    /* cards */
+    .reveal{opacity:0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease}
+    .reveal.show{opacity:1; transform: translateY(0)}
+
+    .section-title{font-size:1.65rem; letter-spacing:-.02em; margin-bottom:10px; font-weight:950}
+    .section-sub{color:rgba(255,77,255,.72); max-width:70ch}
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px}
+    @media (max-width: 900px){.grid-2{grid-template-columns:1fr}}
+
+    .grid-3{display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; margin-top:22px}
+    @media (max-width: 980px){.grid-3{grid-template-columns:1fr}}
+
+    .card{
+      background:linear-gradient(180deg, rgba(22,22,52,.55), rgba(18,18,38,.35));
+      border:1px solid rgba(167,139,250,.18);
+      border-radius: var(--radius);
+      padding:16px;
+      box-shadow:0 18px 50px rgba(0,0,0,.15);
+      position:relative;
+      overflow:hidden;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .card:hover{transform: translateY(-4px); border-color:rgba(255,77,255,.32); box-shadow: var(--ring)}
+
+    .card h3{font-size:1.15rem; margin-bottom:8px; letter-spacing:-.01em; color:rgba(255,77,255,.95)}
+    .card p{color:rgba(255,77,255,.72)}
+
+    /* projects */
+    .project-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:16px; margin-top:22px; align-items:stretch}
+    @media (max-width: 980px){.project-grid{grid-template-columns:1fr}}
+
+    .project{display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center; padding:16px}
+    @media (max-width: 720px){.project{grid-template-columns:1fr}}
+
+    .project-media{border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.06); background:rgba(0,0,0,.14); position:relative; aspect-ratio:4/3}
+    .project-media img{width:100%; height:100%; object-fit:cover; filter:saturate(1.1) contrast(1.08); transform:scale(1.02); transition:transform .35s ease}
+    .project:hover .project-media img{transform:scale(1.08)}
+
+    .badge{position:absolute; top:12px; left:12px; padding:8px 10px; border-radius:999px; background:rgba(10,10,18,.45); border:1px solid rgba(255,77,255,.22); color:rgba(255,77,255,.95); font-weight:950; font-size:.85rem; backdrop-filter: blur(10px)}
+
+    .link-row{display:flex; gap:10px; flex-wrap:wrap}
+    .mini-link{padding:10px 12px; border-radius:12px; border:1px solid rgba(255,77,255,.26); background:rgba(18,18,38,.55); color:rgba(255,77,255,.95); font-weight:950; text-decoration:none; transition:transform .2s ease, box-shadow .2s ease}
+    .mini-link:hover{transform: translateY(-2px); box-shadow: var(--ring)}
+
+    /* services */
+    .pill-row{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .pill{padding:8px 10px; border-radius:999px; background:rgba(18,18,38,.45); border:1px solid rgba(255,77,255,.18); color:rgba(255,77,255,.9); font-weight:900; font-size:.9rem}
+
+    /* contact */
+    .contact-grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:22px}
+    @media (max-width: 980px){.contact-grid{grid-template-columns:1fr}}
+
+    .form{display:grid; gap:12px}
+    .field{display:grid; gap:8px}
+    label{font-weight:950; color:rgba(255,77,255,.9)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,77,255,.22);
+      background:rgba(18,18,38,.45);
+      color:var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{box-shadow:var(--ring); border-color: rgba(255,77,255,.35)}
+
+    button{border:none}
+
+    .footer{padding:34px 20px 44px; text-align:center; color:rgba(255,77,255,.8)}
+    .footer .line{height:1px; width:min(var(--max), 100%); margin:0 auto 16px; background:linear-gradient(90deg, transparent, rgba(255,77,255,.35), transparent)}
+
+    /* reduce motion */
+    @media (prefers-reduced-motion: reduce){
+      .bg-grid, .orb, .reveal{animation:none !important; transition:none !important; opacity:1 !important; transform:none !important}
+      html{scroll-behavior:auto}
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+  <div class="orb three"></div>
+
+  <nav class="nav" aria-label="Main">
+    <div class="brand"><span class="dot"></span><span>KEDI BALOKA</span></div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <div class="hero wrap">
+      <div>
+        <div class="kicker">⚡ HI I AM KEDI BALOKA  • A WEB DEVELOPER</div>
+        <h1 class="title">
+          I create <span class="glow">amazing and attractive</span> websites, webpages and many other things with <span class="glow">smooth</span> animations.
+        </h1>
+        <p class="subtitle">
+          I’m an IT student passionate of CSS, JavaScript and HTML — currently learning C++ and Python.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View Projects <span aria-hidden>→</span></a>
+          <a class="btn btn-secondary" href="#contact">Collaborate</a>
+        </div>
+        <div class="pill-row" style="margin-top:18px; justify-content:flex-start">
+          <span class="pill">CSS</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">HTML</span>
+          <span class="pill">UI / Animation</span>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-media" id="heroMedia">
+          <img src="images/kmc.jpeg" alt="KMC restaurant preview" />
+          <div class="img-glow" aria-hidden="true">
+            <img src="images/keds glow.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-title">About</div>
+        <div class="section-sub">
+          My goal is to build clear, modern webpages for real purposes — ecommerce, e-learning, and more.
+          I’m currently working on two projects: a website for a KMC restaurant and a skin care products website.
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="card reveal">
+          <h3>🧠 Passion</h3>
+          <p>CSS, JavaScript and HTML — plus I’m learning C++ &amp; Python.</p>
+        </div>
+        <div class="card reveal">
+          <h3>🚀 Focus</h3>
+          <p>Fast loading UI with hover glows and scroll animations.</p>
+        </div>
+        <div class="card reveal">
+          <h3>🌍 Location</h3>
+          <p>Base in Douala — open to collaborations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-title">Projects</div>
+        <div class="section-sub">Two active builds: restaurant UI + skin care product experience.</div>
+      </div>
+
+      <div class="project-grid">
+        <article class="card project reveal" aria-label="Project KMC Restaurant">
+          <div class="project-media">
+            <span class="badge">KMC Restaurant</span>
+            <img src="images/kmc.jpeg" alt="KMC Restaurant project image" />
+          </div>
+          <div>
+            <h3>KMC Restaurant Website</h3>
+            <p>A dark, modern layout with cinematic visuals and smooth interaction.</p>
+            <div class="link-row">
+              <a class="mini-link" href="#contact">Request a demo</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project reveal" aria-label="Project Skin Care Products">
+          <div class="project-media">
+            <span class="badge">Skin Care</span>
+            <img src="images/keds glow.png" alt="Skin care product experience preview" style="object-fit:contain; background:rgba(0,0,0,.12)" />
+          </div>
+          <div>
+            <h3>Skin Care Products webSite</h3>
+            <p>Clean product cards, bright UI, and a friendly shopping vibe.</p>
+            <div class="link-row">
+              <a class="mini-link" href="#contact">Collaborate</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project reveal" aria-label="Project Mini Calculator">
+          <div class="project-media">
+            <span class="badge">Mini Calculator</span>
+            <img src="images/mini calculator.jpeg" alt="Mini calculator project preview" />
+          </div>
+          <div>
+            <h3>Mini Calculator</h3>
+            <p>Fast mini calc with keyboard support, clean display, and smooth UI.</p>
+            <div class="link-row">
+              <a class="mini-link" href="mini-calculator.html">Open calculator</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="grid-3" style="margin-top:16px">
+        <div class="card reveal">
+          <h3>⚙️ Performance First</h3>
+          <p>Animations run smoothly and only trigger when sections appear.</p>
+        </div>
+        <div class="card reveal">
+          <h3>📱 Responsive</h3>
+          <p>Layouts adapt perfectly for mobile and desktop.</p>
+        </div>
+        <div class="card reveal">
+          <h3>🎨 Modern UI</h3>
+          <p>Harsh purple energy + glassy cards + glow details.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-title">Services</div>
+        <div class="section-sub">Creations of webpages and websites for ecommerce, e-learning, and personal projects.</div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card reveal">
+          <h3>🛒 E-Commerce</h3>
+          <p>Product cards, landing pages, and conversion-focused UI.</p>
+          <div class="pill-row">
+            <span class="pill">Landing Pages</span>
+            <span class="pill">Product Layout</span>
+            <span class="pill">Clean Design</span>
+          </div>
+        </div>
+
+        <div class="card reveal">
+          <h3>🎓 E-Learning</h3>
+          <p>Course pages with a clear structure and smooth navigation.</p>
+          <div class="pill-row">
+            <span class="pill">Course UI</span>
+            <span class="pill">Student Pages</span>
+            <span class="pill">Responsive</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="reveal">
+        <div class="section-title">Contact</div>
+        <div class="section-sub">For any collaboration, reach me by phone or email.</div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="card reveal">
+          <h3>Let’s build something</h3>
+          <p style="margin-top:6px">📍 Douala • IT Student</p>
+          <div class="pill-row">
+            <a class="pill" href="tel:+237698785442" aria-label="Call 698785442">698785442</a>
+            <a class="pill" href="mailto:Kedigolan@gmail.com" aria-label="Send email to Kedigolan@gmail.com">Kedigolan@gmail.com</a>
+          </div>
+          <p style="margin-top:14px">I’m available for web design, website creation, UI animation and Database management(SQL).</p>
+        </div>
+
+        <form class="card form reveal" onsubmit="event.preventDefault(); toast('Message saved locally ✨');">
+          <div class="field">
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" placeholder="you@email.com" required />
+          </div>
+          <div class="field">
+            <label for="msg">Message</label>
+            <textarea id="msg" name="msg" placeholder="Write your message..." required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send message <span aria-hidden>→</span></button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="line"></div>
+    <div style="font-weight:950">© <span id="year"></span> KEDI BALOKA • Portfolio</div>
+    <div style="margin-top:8px; color:rgba(255,77,255,.7)">Built with harsh purple energy + scroll animations</div>
+  </footer>
+
+  <script>
+    // scroll reveal
+    const revealEls = Array.from(document.querySelectorAll('.reveal'));
+    const io = new IntersectionObserver((entries)=>{
+      for(const e of entries){
+        if(e.isIntersecting){
+          e.target.classList.add('show');
+          io.unobserve(e.target);
+        }
+      }
+    }, {threshold: 0.15});
+    revealEls.forEach(el => io.observe(el));
+
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // tiny hero parallax (mouse)
+    const media = document.getElementById('heroMedia');
+    if(media && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      media.addEventListener('mousemove', (ev)=>{
+        const r = media.getBoundingClientRect();
+        const x = (ev.clientX - r.left) / r.width;
+        const y = (ev.clientY - r.top) / r.height;
+        const rx = (y - 0.5) * -6;
+        const ry = (x - 0.5) * 10;
+        media.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      media.addEventListener('mouseleave', ()=>{ media.style.transform = 'none'; });
+    }
+
+    // toast
+    let toastEl;
+    function toast(text){
+      toastEl = toastEl || document.createElement('div');
+      toastEl.style.position = 'fixed';
+      toastEl.style.left = '50%';
+      toastEl.style.bottom = '22px';
+      toastEl.style.transform = 'translateX(-50%)';
+      toastEl.style.padding = '12px 14px';
+      toastEl.style.borderRadius = '14px';
+      toastEl.style.background = 'rgba(18,18,38,.85)';
+      toastEl.style.border = '1px solid rgba(255,77,255,.25)';
+      toastEl.style.backdropFilter = 'blur(10px)';
+      toastEl.style.color = 'rgba(255,77,255,.95)';
+      toastEl.style.fontWeight = '900';
+      toastEl.style.boxShadow = '0 18px 60px rgba(0,0,0,.35)';
+      toastEl.style.zIndex = '999';
+      toastEl.textContent = text;
+      document.body.appendChild(toastEl);
+      toastEl.animate([
+        {opacity:0, transform:'translateX(-50%) translateY(10px)'},
+        {opacity:1, transform:'translateX(-50%) translateY(0)'}
+      ], {duration:180, fill:'forwards'});
+      setTimeout(()=>{
+        if(toastEl){
+          toastEl.animate([{opacity:1},{opacity:0}], {duration:220, fill:'forwards'});
+        }
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
+
