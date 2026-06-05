@@ -1,0 +1,16 @@
+{
+  "name": "web-page",
+  "version": "1.0.0",
+  "description": "Portfolio website for Kedi Baloka Phillippa Golan Charlotte",
+  "scripts": {
+    "dev": "echo 'This is a static HTML website. Open index.html in your browser.'",
+    "build": "echo 'No build step required for static HTML.'"
+  },
+  "dependencies": {
+    "@vercel/analytics": "^1.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kedigolan-design/web-page"
+  }
+}
